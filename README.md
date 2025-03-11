@@ -96,9 +96,3 @@ O sistema impede:
 - Verifique o estoque antes de fazer vendas grandes
 - Lembre-se que ao fazer uma nova compra, o valor de venda de TODO o estoque daquele produto será atualizado
 - O sistema sempre usa o estoque mais recente primeiro (LIFO)
-
-## Sugestões de Melhorias Futuras
-- Adicionar relatórios de vendas
-- Implementar busca por data
-- Criar backup automático dos dados
-- Adicionar categorias de produtos 
