@@ -28,16 +28,19 @@ O sistema automaticamente:
 - Calcula o valor unitário (R$ 10,00 por unidade)
 - Define o valor de venda (R$ 13,00 por unidade, margem de 30%)
 - Coloca essa compra no topo da pilha
+- Atualiza o valor de venda para todos os lotes existentes deste produto
 
 #### 2. Registro de Vendas
 O processo de venda é mais interessante. Vamos supor que temos:
-- Lote 1: 20 unidades de arroz a R$ 8,00 cada
-- Lote 2: 10 unidades de arroz a R$ 10,00 cada (mais recente)
+- Lote 1: 20 unidades de arroz
+- Lote 2: 10 unidades de arroz (mais recente, R$ 10,00 cada)
 
 Se vendermos 25 unidades, o sistema:
 1. Usa primeiro as 10 unidades do lote mais recente
 2. Depois usa 15 unidades do lote anterior
-3. Calcula o valor total baseado no preço de venda de cada lote
+3. Calcula o valor total baseado no preço de venda atual (R$ 13,00 por unidade para todas as unidades)
+
+Importante: O valor de venda é SEMPRE baseado na última compra, independentemente do lote que está sendo vendido.
 
 #### 3. Consulta de Estoque
 A consulta mostra um resumo consolidado por produto. Por exemplo:
@@ -78,9 +81,9 @@ Para testar, sugiro:
 ## Detalhes Técnicos Importantes
 
 ### Cálculo de Valores
-- O valor de venda é sempre baseado na última compra
+- O valor de venda é SEMPRE baseado na última compra, para todos os lotes
 - A margem é fixa em 30%
-- Ao exibir o estoque, as quantidades são somadas, mas os valores são da última compra
+- Quando uma nova compra é registrada, seu valor de venda se torna o valor padrão para todas as vendas daquele produto
 
 ### Validações
 O sistema impede:
@@ -91,7 +94,8 @@ O sistema impede:
 ## Dicas de Uso
 - Mantenha um registro das compras em ordem cronológica
 - Verifique o estoque antes de fazer vendas grandes
-- Preste atenção aos valores unitários ao registrar compras
+- Lembre-se que ao fazer uma nova compra, o valor de venda de TODO o estoque daquele produto será atualizado
+- O sistema sempre usa o estoque mais recente primeiro (LIFO)
 
 ## Sugestões de Melhorias Futuras
 - Adicionar relatórios de vendas
